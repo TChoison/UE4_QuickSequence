@@ -71,8 +71,19 @@ TSharedRef<SDockTab> FQuickSequenceModule::OnSpawnPluginTab(const FSpawnTabArgs&
 				SNew(SBorder)
 				.BorderImage(FCoreStyle::Get().GetBrush("ToolPanel.GroupBorder"))
 				[
-					SNew(STextBlock)
-					.Text(WidgetText)
+					SNew(SVerticalBox)
+
+					+SVerticalBox::Slot()
+					[
+						SNew(STextBlock)
+						.Text(WidgetText)
+					]
+
+					+SVerticalBox::Slot()
+					[
+						SNew(SButton)
+						.Text(FText::FromString(TEXT("角色")))
+					]
 				]
 			]
 		];

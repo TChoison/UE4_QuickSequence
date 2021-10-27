@@ -8,6 +8,7 @@
 #include "Widgets/Layout/SBox.h"
 #include "Widgets/Text/STextBlock.h"
 #include "ToolMenus.h"
+#include "MyDockTab.h"
 
 static const FName QuickSequenceTabName("QuickSequence");
 
@@ -31,9 +32,9 @@ void FQuickSequenceModule::StartupModule()
 
 	UToolMenus::RegisterStartupCallback(FSimpleMulticastDelegate::FDelegate::CreateRaw(this, &FQuickSequenceModule::RegisterMenus));
 	
-	FGlobalTabmanager::Get()->RegisterNomadTabSpawner(QuickSequenceTabName, FOnSpawnTab::CreateRaw(this, &FQuickSequenceModule::OnSpawnPluginTab))
-		.SetDisplayName(LOCTEXT("FQuickSequenceTabTitle", "QuickSequence"))
-		.SetMenuType(ETabSpawnerMenuType::Hidden);
+	//FGlobalTabmanager::Get()->RegisterNomadTabSpawner(QuickSequenceTabName, FOnSpawnTab::CreateRaw(this, &FQuickSequenceModule::OnSpawnPluginTab))
+	//	.SetDisplayName(LOCTEXT("FQuickSequenceTabTitle", "QuickSequence"))
+	//	.SetMenuType(ETabSpawnerMenuType::Hidden);
 }
 
 void FQuickSequenceModule::ShutdownModule()
@@ -68,30 +69,21 @@ TSharedRef<SDockTab> FQuickSequenceModule::OnSpawnPluginTab(const FSpawnTabArgs&
 			.HAlign(HAlign_Center)
 			.VAlign(VAlign_Center)
 			[
-				SNew(SBorder)
-				.BorderImage(FCoreStyle::Get().GetBrush("ToolPanel.GroupBorder"))
-				[
-					SNew(SVerticalBox)
-
-					+SVerticalBox::Slot()
-					[
-						SNew(STextBlock)
-						.Text(WidgetText)
-					]
-
-					+SVerticalBox::Slot()
-					[
-						SNew(SButton)
-						.Text(FText::FromString(TEXT("角色")))
-					]
-				]
+				SNew(STextBlock)
+				.Text(WidgetText)
 			]
 		];
 }
 
+FReply FQuickSequenceModule::OnCharButtonClick()
+{
+	return FReply::Handled();
+}
+
 void FQuickSequenceModule::PluginButtonClicked()
 {
-	FGlobalTabmanager::Get()->TryInvokeTab(QuickSequenceTabName);
+	//FGlobalTabmanager::Get()->TryInvokeTab(QuickSequenceTabName);
+	MyDockTab::Get().InvokeDockTab();
 }
 
 void FQuickSequenceModule::RegisterMenus()

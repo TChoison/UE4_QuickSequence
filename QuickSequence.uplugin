@@ -20,5 +20,15 @@
 			"Type": "Editor",
 			"LoadingPhase": "Default"
 		}
+	],
+	"Plugins": [
+		{
+			"Name": "GeometryCache",
+			"Enabled": true
+		},
+		{
+			"Name": "AlembicImporter",
+			"Enabled": true
+		}
 	]
 }

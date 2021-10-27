@@ -42,6 +42,9 @@ public class QuickSequence : ModuleRules
 				"Engine",
 				"Slate",
 				"SlateCore",
+				"kismet",
+				"GeometryCache",
+				"AlembicLibrary"
 				// ... add private dependencies that you statically link with here ...	
 			}
 			);
